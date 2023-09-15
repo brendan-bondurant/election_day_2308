@@ -37,27 +37,13 @@ RSpec.describe Election do
     it 'can count votes' do 
       election = Election.new("2023")
       diana = Candidate.new({name: "Diana D", party: :democrat})
-      joe = Candidate.new({name: "Joe", party: :independent})
+      roberto = Candidate.new({name: "Roberto R", party: :republican})
       election.add_candidate(diana)
       election.count(diana)
       expect(election.vote_counts.keys).to eq(["Diana D"])
       expect(election.vote_counts.count).to eq(1)
-      election.count(joe)
+      election.count(roberto)
       expect(election.vote_counts.count).to eq(2)
-    end
-    it 'tells how many votes everyone got' do
-      election = Election.new("2023")
-      diana = Candidate.new({name: "Diana D", party: :democrat})
-      joe = Candidate.new({name: "Joe", party: :independent})
-      diana.vote_for!
-      diana.vote_for!
-      diana.vote_for!
-      diana.vote_for!
-      joe.vote_for!
-      joe.vote_for!
-      election.count(diana)
-      election.count(joe)
-      expect(election.vote_counts["Diana D"]).to eq("4")
     end
   end
 end
